@@ -1,6 +1,12 @@
+// var crpto = require('../../utils/cypto.js');
+// import {decrypted} from '../../utils/cypto.js';
+// import {cryptoJs} from '../../utils/crypto.js'
+import cryptoJs from '../../utils/crypto.js';
+
 // index.js
 // 获取应用实例
 const app = getApp()
+
 
 Page({
   data: {
@@ -16,6 +22,16 @@ Page({
     })
   },
   onLoad() {
+    const encryptPas = cryptoJs.encrypt("admin");
+    const decryptMd5 = cryptoJs.md5("123456");
+    const aes = cryptoJs.encrypt(decryptMd5);
+
+    console.log("aes加密:" + encryptPas);
+    // console.log("aes解密:" + decryptPas);
+    // console.log("md5加密:" + decryptMd5);
+    console.log("md5-aes加密:" + aes);
+
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
