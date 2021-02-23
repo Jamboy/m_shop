@@ -1,5 +1,16 @@
-// pages/index/login/login.js
+/*
+ * @Description: 
+ * @Author: Jamboy
+ * @Date: 2021-02-02 15:26:05
+ * @LastEditTime: 2021-02-22 17:37:13
+ */
 import cropto from '../../utils/crypto.js'
+import {
+    config
+} from '../../config/config.js'
+import {
+    User
+} from '../../models/user.js'
 
 Page({
 
@@ -14,8 +25,9 @@ Page({
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
-
+    async onLoad(options) {
+        const data = await User.testLocalApi()
+        console.log(data.data.data.goodsCount)
     },
 
     /**
@@ -62,7 +74,7 @@ Page({
      * 获取手机号登录
      * @param {*} e 
      */
-    getPhoneNumber(e){
+    getPhoneNumber(e) {
         console.log(e.detail.errMsg)
         console.log(e.detail.iv)
         console.log(e.detail.encryptedData)
