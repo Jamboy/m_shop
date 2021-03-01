@@ -4,10 +4,11 @@
     align-items: center;
     width: 100%;
 }
+
 .input-group{
     display: flex;
     flex-direction: row;
-    margin-bottom: 20rpx;
+    margin-bottom: 30rpx;
 }
 
 .input-label{
@@ -16,4 +17,5 @@
 
 .btn-login{
     margin-top: 20rpx;
+    
 }

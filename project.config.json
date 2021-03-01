@@ -42,30 +42,36 @@
     "compileType": "miniprogram",
     "libVersion": "2.15.0",
     "appid": "wx0b153625dd7716fe",
-    "projectname": "DRPDemo",
+    "projectname": "SleeveDemo",
     "debugOptions": {
         "hidedInDevtools": []
     },
     "scripts": {},
     "isGameTourist": false,
     "condition": {
-        "search": {
-            "list": []
-        },
-        "conversation": {
+        "plugin": {
             "list": []
         },
         "game": {
-            "list": []
-        },
-        "plugin": {
             "list": []
         },
         "gamePlugin": {
             "list": []
         },
         "miniprogram": {
-            "list": []
+            "list": [
+                {
+                    "name": "pages/my/my",
+                    "pathName": "pages/my/my",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/home/home",
+                    "pathName": "pages/home/home",
+                    "scene": null
+                }
+            ]
         }
     }
 }
