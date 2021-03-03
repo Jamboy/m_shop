@@ -69,6 +69,13 @@
                 {
                     "name": "pages/home/home",
                     "pathName": "pages/home/home",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/detail/detail",
+                    "pathName": "pages/detail/detail",
+                    "query": "pid=1181000",
                     "scene": null
                 }
             ]

@@ -6,6 +6,7 @@
  */
 const ApiBaseUrl = 'http://106.53.83.193:9888/' //云端测试api
 const ApiRootUrl = 'http://127.0.0.1:8360/api/' //本地商城测试api
+const ApiMockUrl = 'https://1f97354c-56e2-4403-a9e8-362717d86909.mock.pstmn.io/' //postman mock api
 
 const config = {
     ApiBaseUrl: ApiBaseUrl,
@@ -71,6 +72,11 @@ const config = {
 
     FootprintList: ApiRootUrl + 'footprint/list',  //足迹列表
     FootprintDelete: ApiRootUrl + 'footprint/delete',  //删除足迹
+
+    /**
+     * mock api
+     */
+    MockGoodsDetail: ApiMockUrl + 'mock/goods/detail' //mock lin response 测试矩阵
 }
 
 export {

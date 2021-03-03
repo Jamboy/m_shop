@@ -14,28 +14,21 @@
 // 成功                      200
 // 失败                      400
 // 未授权                    401
-// token失效                 403 
+// token失效                 403
 // 未找到                    404
-import {
-    config
-} from '../config/config.js'
-import { codes } from '../config/exception-config.js';
-import { HttpException } from '../core/http-exception.js';
-import {
-    Token
-} from '../models/token.js';
-import {
-    promisic
-} from './util.js';
+import {codes} from '../config/exception-config.js';
+import {HttpException} from '../core/http-exception.js';
+import {Token} from '../models/token.js';
+import {promisic} from './util.js';
 
 class Http {
     static async request({ //用对象解构,函数参数
-        url,
-        data,
-        method = 'GET', //默认GET请求
-        refetch = true,
-        throwError = false
-    }) {
+                             url,
+                             data,
+                             method = 'GET', //默认GET请求
+                             refetch = true,
+                             throwError = false
+                         }) {
         let res;
         try {
             res = await promisic(wx.request)({
@@ -56,10 +49,11 @@ class Http {
             Http.showError(-1)
             return null;
         }
-        console.log('网络请求结果返回')
-        console.log(res)
+        console.log("-------------->开始网络请求结果 begin:----------->")
         const resCode = res.statusCode.toString(); //服务器返回的状态code
-        console.log("resCode" + resCode)
+        console.log("网络请求结果返回resCode:  " + resCode)
+        console.log(res)
+        console.log("-------------->结束网络请求结果 end  :----------->")
         if (resCode.startsWith('2')) {
             return res.data; //成功 200 
         } else {
@@ -87,23 +81,23 @@ class Http {
                 }
                 // 其它异常处理
                 const error_code = res.data.code;
-                // console.log("res.data")
-                // console.log(res.data)
                 Http.showError(error_code, res.data)
             }
         }
         return res.data;
     }
 
-    /**TODO:循环调用
+    /**TODO: 解决循环调用
      * @description: 重新获取token
      * @param {*} data
      * @return {*}
      */
     static async _refetch(data) {
-        console.log(data);
-        await Token.getTokenFromServiceByAccount(data.username,data.password); //重新获取token-重新登录
+        console.log("-------------->开始二次重发 begin:----------->")
+        await Token.getTokenFromServiceByAccount(data.username, data.password); //重新获取token-重新登录
         data.refetch = true; //防止二次重发
+        console.log(data)
+        console.log("-------------->结束二次重发 end  :----------->")
         return await Http.request(data);
     }
 

@@ -4,13 +4,15 @@
         "pages/login/login",
         "pages/index/index",
         "pages/my/my",
-        "pages/home/home"
+        "pages/home/home",
+        "pages/detail/detail"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "SleeveDemo",
-        "navigationBarTextStyle": "black"
+        "navigationBarTextStyle": "black",
+        "onReachBottomDistance": 50
     },
     "tabBar": {
         "list": [
@@ -39,6 +41,7 @@
         "l-grid-item": "miniprogram_npm/lin-ui/grid-item/index",
         "l-price": "/miniprogram_npm/lin-ui/price/index",
         "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
+        "l-load-more": "/miniprogram_npm/lin-ui/loadmore/index",
         "udf-spu-preview": "/components/spu-preview/index"
     },
     "style": "v2",

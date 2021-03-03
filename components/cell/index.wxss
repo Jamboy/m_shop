@@ -1,0 +1,12 @@
+.container {
+    border: 2rpx solid #333;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
+}
+
+.inner-container {
+
+}
