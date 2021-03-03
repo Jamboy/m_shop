@@ -1,0 +1,17 @@
+<!--components/realm/index.wxml-->
+<view class="container">
+    <text>{{spu.title}}</text>
+    <view>
+        <image class="img" src=""></image>
+    </view>
+    <block wx:for="{{fences}}" wx:key="index">
+        <!--    规格-->
+        <udf-fence fence="{{item}}" ></udf-fence>
+    </block>
+
+    <view class="counter-container">
+        <!--  数量选择       -->
+    </view>
+
+    <view></view>
+</view>

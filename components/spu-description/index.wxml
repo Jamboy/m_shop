@@ -1,0 +1,13 @@
+<!--components/spu-description/index.wxml-->
+<view class="container">
+    <view class="inner-container">
+        <text class="title">{{info.title}}</text>
+        <text class="sub-title">{{info.subtitle}}</text>
+        <l-price value="{{info.price}}" color="red" size="34"></l-price>
+    </view>
+    <view class="share-container">
+        <view class="share-inner-container">
+            <text class="share">分享</text>
+        </view>
+    </view>
+</view>

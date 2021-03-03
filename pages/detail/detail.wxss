@@ -1,0 +1,14 @@
+/* pages/detail/detail.wxss */
+.container{
+}
+
+.swiper-container{
+    width: 100%;
+    height: 750rpx;
+}
+
+/*swiper img*/
+.img{
+    width: 100%;
+    height: 750rpx;
+  }

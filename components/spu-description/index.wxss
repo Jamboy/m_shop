@@ -1,0 +1,47 @@
+/* components/spu-description/index.wxss */
+
+.container{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.inner-container{
+    display:flex;
+    flex-direction:column;
+    margin-top: 30rpx;
+    margin-left: 30rpx;
+    width: 100%;
+
+}
+
+.title{
+    color: #333;
+    margin-bottom: 10rpx;
+}
+
+.sub-title{
+    color: #999;
+    margin-bottom: 10rpx;
+}
+
+.share-container{
+    width: 120rpx;
+    height: 100rpx;
+    border-left: dashed 1px red;
+}
+
+.share-inner-container{
+    background-color: green;
+    width: 50rpx;
+    height: 100rpx;
+    margin-left: 20rpx;
+    text-align: center;
+}
+
+.share{
+    font-size: 24rpx;
+    text-align: center;
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: lr-tb;
+}

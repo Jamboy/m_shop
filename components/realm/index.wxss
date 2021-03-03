@@ -1,0 +1,8 @@
+/* components/realm/index.wxss */
+.container{
+    padding: 30rpx;
+}
+.img{
+    width: 160rpx;
+    height: 160rpx;
+}

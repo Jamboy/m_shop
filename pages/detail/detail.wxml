@@ -1,0 +1,13 @@
+<!--pages/detail/detail.wxml-->
+<view class="container">
+    <swiper class="swiper-container" indicator-dots autoplay>
+        <block wx:for="{{gallery}}" wx:key="index">
+            <swiper-item>
+                <image class="img" src="{{item.img_url}}"></image>
+            </swiper-item>
+        </block>
+    </swiper>
+    <udf-spu-description info="{{desc}}"></udf-spu-description>
+<!--    <udf-spu-spec list="{{spuSpecDataList}}"></udf-spu-spec>-->
+    <udf-realm spu="{{spu}}"></udf-realm>
+</view>
