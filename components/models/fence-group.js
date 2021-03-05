@@ -7,6 +7,7 @@
  */
 import {Matrix} from "./matrix";
 import {Fence} from "./fence";
+import {Judger} from "./judger";
 
 class FenceGroup {
     spu
@@ -46,7 +47,8 @@ class FenceGroup {
         const newMatrix = matrix.transpose()  //转秩
         console.log("-------------->开始处理专职后的矩阵 begin:----------->")
         newMatrix.forEach(r => {
-            const fence = new Fence(r)
+            // const fence = new Fence(r)
+            const fence = this._createFence(r)
             fence.init()
             fences.push(fence)
         })
@@ -60,8 +62,8 @@ class FenceGroup {
      * @param element
      * @private
      */
-    _createFence() {
-        const fence = new Fence()
+    _createFence(r) {
+        const fence = new Fence(r)
         return fence
     }
 

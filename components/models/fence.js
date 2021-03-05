@@ -23,8 +23,11 @@ class Fence {
         this._initCells()
     }
 
+    /**
+     * 规格值去重
+     * @private
+     */
     _initCells() {
-
         this.specs.forEach(s => {
             //去重
             const existed = this.cells.some(c=>{

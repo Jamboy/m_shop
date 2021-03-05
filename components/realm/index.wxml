@@ -6,7 +6,7 @@
     </view>
     <block wx:for="{{fences}}" wx:key="index">
         <!--    规格-->
-        <udf-fence fence="{{item}}" ></udf-fence>
+        <udf-fence bind:celltap="onCellTap" x="{{index}}" data-key-id="{{item.id}}" fence="{{item}}"></udf-fence>
     </block>
 
     <view class="counter-container">

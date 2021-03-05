@@ -27,7 +27,7 @@ Page({
         const pid = options.pid
         console.log("-------------->商品详情页面加载 begin:----------->")
         console.log(pid)
-        const spu = await this.getMockDetail(2)
+        const spu = await this.getMockDetail(3)
         this.setData({
             spu,
             desc: {
