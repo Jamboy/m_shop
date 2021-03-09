@@ -1,49 +1,50 @@
 {
-    "entryPagePath": "pages/login/login",
-    "pages": [
-        "pages/login/login",
-        "pages/index/index",
-        "pages/my/my",
-        "pages/home/home",
-        "pages/detail/detail"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "SleeveDemo",
-        "navigationBarTextStyle": "black",
-        "onReachBottomDistance": 50
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/home/home",
-                "text": "主页",
-                "iconPath": "images/tabbar/home@dis.png",
-                "selectedIconPath": "images/tabbar/home.png"
-            },
-            {
-                "pagePath": "pages/my/my",
-                "text": "我的",
-                "iconPath": "images/tabbar/my@dis.png",
-                "selectedIconPath": "images/tabbar/my.png"
-            }
-        ]
-    },
-    "useExtendedLib": {
-        "weui": true
-    },
-    "usingComponents": {
-        "mp-form": "weui-miniprogram/form/form",
-        "mp-cells": "weui-miniprogram/cells/cells",
-        "mp-cell": "weui-miniprogram/cell/cell",
-        "l-grid": "miniprogram_npm/lin-ui/grid/index",
-        "l-grid-item": "miniprogram_npm/lin-ui/grid-item/index",
-        "l-price": "/miniprogram_npm/lin-ui/price/index",
-        "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
-        "l-load-more": "/miniprogram_npm/lin-ui/loadmore/index",
-        "udf-spu-preview": "/components/spu-preview/index"
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+  "entryPagePath": "pages/login/login",
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/my/my",
+    "pages/home/home",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "SleeveDemo",
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "主页",
+        "iconPath": "images/tabbar/home@dis.png",
+        "selectedIconPath": "images/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "images/tabbar/my@dis.png",
+        "selectedIconPath": "images/tabbar/my.png"
+      }
+    ]
+  },
+  "useExtendedLib": {
+    "weui": true
+  },
+  "usingComponents": {
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "l-grid": "miniprogram_npm/lin-ui/grid/index",
+    "l-grid-item": "miniprogram_npm/lin-ui/grid-item/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
+    "l-load-more": "/miniprogram_npm/lin-ui/loadmore/index",
+    "udf-spu-preview": "/components/spu-preview/index",
+    "l-counter": "/miniprogram_npm/lin-ui/counter/index"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

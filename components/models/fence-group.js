@@ -7,7 +7,6 @@
  */
 import {Matrix} from "./matrix";
 import {Fence} from "./fence";
-import {Judger} from "./judger";
 
 class FenceGroup {
     spu
@@ -55,6 +54,54 @@ class FenceGroup {
         this.fences = fences
         console.log("-------------->结束处理专职后的矩阵 end  :----------->")
         console.log(fences)
+    }
+
+    /**
+     * 循环取出cell
+     * @param callback 回调函数传回cell
+     */
+    eachCell(callback) {
+        for (let i = 0; i < this.fences.length; i++) {
+            for (let j = 0; j < this.fences[i].cells.length; j++) {
+                const cell = this.fences[i].cells[j]
+                callback(cell, i, j)
+            }
+        }
+    }
+
+    /**
+     * 获取默认sku
+     * @returns {*}
+     */
+    getDefaultSku() {
+        const defaultSkuId = this.spu.default_sku_id;
+        if (!defaultSkuId) {
+            return
+        }
+        return this.skuList.find(s => s.id === defaultSkuId)
+    }
+
+    /**
+     * 根据cell id设置status
+     * @param id
+     * @param status
+     */
+    setCellStatusByCellId(id, status) {
+        this.eachCell((cell) => {
+            if (cell.id === id) {
+                cell.status = status
+            }
+        })
+    }
+
+    /**
+     * 根据坐标设置cell状态
+     * @param x
+     * @param y
+     * @param status
+     */
+    setCellStatusByXY(x, y, status) {
+        this.fences[x].cells[y].status = status
     }
 
     /**

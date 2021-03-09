@@ -18,10 +18,13 @@ class SkuCode {
     }
 
     /**
-     * 分割code 获取spuId and specCode
+     * 分割code 获取spuId and specCode 组合路径
+     * "code": "2$1-45#3-9#4-14",
+     * 切分提取 1-45，3-9，4-14——排列组合
+     * 结果:"1-45", "3-9", "4-14", "1-45#3-9", "1-45#4-14", "3-9#4-14", "1-45#3-9#4-14"
      * @private
      */
-    // "code": "2$1-45#3-9#4-14",
+
     _splitToSegments() {
         const spuAndSpec = this.code.split('$');
         this.spuId = spuAndSpec[0]

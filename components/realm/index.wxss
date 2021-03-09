@@ -1,8 +1,93 @@
 /* components/realm/index.wxss */
-.container{
+.container {
+    box-sizing: border-box;
     padding: 30rpx;
+    background-color: #ffffff;
+
 }
-.img{
+
+.sku-preview {
+    display: flex;
+    flex-direction: row;
+}
+
+.sku-img {
     width: 160rpx;
     height: 160rpx;
+}
+
+.sku-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 40rpx;
+}
+
+.price-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline
+}
+
+.stock {
+    padding-left: 40rpx;
+    font-size: 20rpx;
+    color: #333;
+}
+
+.choose {
+    font-size: 20rpx;
+    color: #666;
+}
+
+.color {
+    font-size: 24rpx;
+    color: #333;
+    padding-left: 20rpx;
+}
+
+.hr {
+    margin-top: 30rpx;
+    width: 690rpx;
+    height: 2rpx;
+    background-color: #E9E9E9;
+}
+
+.counter-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30rpx;
+}
+
+.bottom-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30rpx;
+    height: 100rpx;
+}
+
+.left-btn{
+    background-color: black;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+
+}
+
+.right-btn{
+    color: white;
+    background-color: green;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

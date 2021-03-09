@@ -16,7 +16,7 @@ class SpuPaging {
     static getSpuPaging() {
         return new Paging({
             url: config.GoodsList
-        }, 1,100)
+        }, 1,10)
     }
 
 }

@@ -7,33 +7,53 @@
  */
 import {SkuCode} from "./sku-code";
 import {CellStatus} from "../../core/enum";
+import {SkuPending} from "./SkuPending";
+import {Joiner} from "../../utils/joiner";
 
 class Judger {
     fenceGroup
     pathDict = []  //可选cell路径字典
     fences = []
+    skuPending
 
     constructor(fenceGroup) {
         this.fenceGroup = fenceGroup
         this.fences = fenceGroup.fences
         this._initPathDict()
-        console.log("-------------->开始加载constructor(fenceGroup begin:----------->")
-        console.log(fenceGroup)
-        console.log("-------------->结束加载 constructor(fenceGroupend  :----------->")
+        this._initSkuPending()
 
+    }
+
+    //初始化pending
+    _initSkuPending() {
+        this.skuPending = new SkuPending()
+        const defaultSku = this.fenceGroup.getDefaultSku() //获取当前默认sku
+        if (!defaultSku) {
+            return
+        }
+        this.skuPending.init(defaultSku) //默认sku加入sku pending
+        this._initSelectedCell() //
+        this.judge(null, null, null, true) //改变其它非默认cell status
+    }
+
+    // 初始化默认Cell status
+    _initSelectedCell() {
+        this.skuPending.pending.forEach(cell => {
+            this.fenceGroup.setCellStatusByCellId(cell.id, CellStatus.SELECTED)
+        })
     }
 
     /**
      * 初始化路径字典
      */
-    async _initPathDict() {
+    _initPathDict() {
         this.fenceGroup.skuList.forEach(s => {
             const skuCode = new SkuCode(s.code)
             this.pathDict = this.pathDict.concat(skuCode.totalSegments)
         })
-        console.log("-------------->开始加载pathDict begin:----------->")
-        console.log(this.pathDict)
-        console.log("-------------->加载pathDict end  :----------->")
+        // console.log("-------------->开始加载pathDict begin:----------->")
+        // console.log(this.pathDict)
+        // console.log("-------------->加载pathDict end  :----------->")
     }
 
     /**
@@ -48,15 +68,15 @@ class Judger {
         console.log("-------------->开始加载 allSinglePath begin:----------->")
         console.log(allSinglePath)
         allSinglePath.forEach(e => {
-            console.log("进入循环")
+            // console.log("进入循环")
             // if (singlePath.includes(e)) {
             //     console.log("return")
             //     return
             // }
             this._changeCellStatusToForbidden(e)
         })
-        console.log("-------------->开始加载 allSinglePath begin:----------->")
-        return "1"
+        // console.log("-------------->开始加载 allSinglePath begin:----------->")
+        // return "1"
     }
 
     async _changeCellStatusToForbidden(e) {
@@ -119,30 +139,33 @@ class Judger {
 
 
     /**
-     *
+     * 所有cell的状态处理
      * @param cell
      * @param x 行
      * @param y 列
      */
-    judge(cell, x, y) {
-        this.findCellByPosition(x, y)
+    judge(cell, x, y, isInit) {
+        if (!isInit) {
+            this._changeCurrentCellStatus(cell, x, y) //当前点击cell状态
+        }
+        // 其它cell处理
+        this.fenceGroup.eachCell((cell, x, y) => {
+            // 循环每一个cell ，找到它的所有路径
+            const path = this._findPotentialPath(cell, x, y)
+            if (!path) {
+                return
+            }
+            // 路径存在字典中则改变其状态
+            const isIn = this._isInDict(path)
+            if (isIn) {
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAiTING)
+            } else {
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.FORBIDDEN)
+            }
+        })
+
     }
 
-    /**
-     * 找到cell并改状态
-     * @param x
-     * @param y
-     */
-    findCellByPosition(x, y) {
-        console.log(this.fences)
-        const cell = this.fences[x].cells[y]
-        this._changeCellStatus(cell)
-        console.log(cell)
-    }
-
-    /**
-     * @description
-     */
 
     /**
      * @description 根据key找cell并修改status
@@ -159,34 +182,78 @@ class Judger {
         console.log("-------------->当前点击cell begin:----------->")
         console.log(currentCell)
         console.log("-------------->点击cell   end  :----------->")
-        this._changeCellStatus(currentCell)
+        this._changeCurrentCellStatus(currentCell)
         return this.fenceGroup
     }
 
+
     /**
+     * 寻找Cell潜在路径
+     * @param cell
+     * @param x
+     * @param y
+     * @private
+     */
+    _findPotentialPath(cell, x, y) {
+        const joiner = new Joiner("#")
+        for (let i = 0; i < this.fences.length; i++) {
+            //循环从skupending查找记录过的cell
+            const selected = this.skuPending.findSelectedCellByX(i) //找当前循环行的已选cell
+            if (x === i) {
+                // 当前行 - 存在已选cell
+                if (this.skuPending.isSelected(cell, x)) {
+                    return
+                }
+                const cellCode = this._getCellCode(cell.spec)
+                joiner.join(cellCode)
+            } else {
+                // 其他行
+                if (selected) {
+                    const selectedCellCode = this._getCellCode(selected.spec)
+                    joiner.join(selectedCellCode)
+                }
+            }
+        }
+        return joiner.getStr()
+    }
+
+    /**
+     * 路径是否存在
+     * @param path
+     * @returns {boolean}
+     * @private
+     */
+    _isInDict(path) {
+        return this.pathDict.includes(path)
+    }
+
+    /**
+     * 获取cell code
+     * @param spec
+     * @returns {string}
+     * @private
+     */
+    _getCellCode(spec) {
+        return spec.key_id + '-' + spec.value_id
+    }
+
+    /**
+     /**
      * @description 改变当前cell的状态，
      * 可以点击-selected waiting 切换
      */
-    _changeCellStatus(currentCell) {
-        console.log("-------------->_changeCellStatus begin:----------->")
-        if (currentCell.status === CellStatus.WAiTING) {
+    _changeCurrentCellStatus(cell, x, y) {
+        if (cell.status === CellStatus.WAiTING) {
             //可选-选中
-            console.log('进入waiting')
-            currentCell.status = CellStatus.SELECTED
-            console.log(currentCell.status)
-            return
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.SELECTED)
+            this.skuPending.insertCell(cell, x)
         }
 
-        if (currentCell.status === CellStatus.SELECTED) {
+        if (cell.status === CellStatus.SELECTED) {
             //选中-可选
-            console.log('进入selected')
-            currentCell.status = CellStatus.WAiTING
-            console.log(currentCell.status)
-            return
-
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAiTING)
+            this.skuPending.removeCell(x)
         }
-        console.log("-------------->_changeCellStatus end  :----------->")
-
     }
 
 
@@ -225,13 +292,6 @@ class Judger {
         return cell
     }
 
-    /**
-     * 找到需要被禁用的cell
-     *
-     */
-    findForbiddenCellBykey(e) {
-        e
-    }
 
     async findAllKey() {
         const allKey = []

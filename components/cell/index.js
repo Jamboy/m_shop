@@ -19,7 +19,6 @@ Component({
      */
     methods: {
         onTap(e) {
-            console.log('cell被点击')
             var eventDetail = {
                 cell: this.properties.cell,
                 x: this.properties.x,

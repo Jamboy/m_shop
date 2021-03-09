@@ -19,7 +19,6 @@ Component({
             this.data.fenceGroup = fenceGroup
             fenceGroup.initFences()
             const judger = new Judger(fenceGroup)
-            const res = await judger._initCellStatus()
             this.data.judger = judger
             this.bindInitData(judger.fenceGroup)
         }
@@ -58,11 +57,11 @@ Component({
             const x = detail.x
             const y = detail.y
             const fenceKey = e.currentTarget.dataset.keyId
-            console.log(e)
-            console.log(fenceKey)
-            console.log(detail.cell)
-            console.log(detail.x)
-            console.log(detail.y)
+            // console.log(e)
+            // console.log(fenceKey)
+            // console.log(detail.cell)
+            // console.log(detail.x)
+            // console.log(detail.y)
             const judger = this.data.judger
             judger.judge(cell, x, y) // 切换cell状态
             this.setData({

@@ -11,10 +11,17 @@ class Cell {
     title
     id
     status = CellStatus.WAiTING
+    spec
 
     constructor(spec) {
         this.title = spec.value
         this.id = spec.value_id
+        this.spec = spec
+    }
+
+    // 获取cell 的路径id 1-23
+    getCellCode() {
+        return this.spec.key_id + '-' + this.spec.value_id
     }
 }
 

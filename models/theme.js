@@ -5,8 +5,12 @@
  * @LastEditTime: 2021-02-25 15:30:09
  */
 
-import { config } from "../config/config"
-import { Http } from "../utils/http"
+import {
+    config
+} from "../config/config"
+import {
+    Http
+} from "../utils/http"
 
 class Theme {
     homeData = null;
@@ -39,7 +43,7 @@ class Theme {
      * @description: 获取新品信息
      * @return {*}
      */
-    getNewGoodList(){
+    getNewGoodList() {
         return this.homeData.newGoodsList;
     }
 
@@ -63,22 +67,22 @@ class Theme {
      * @param {*}
      * @return {*}
      */
-    getHomeLocationB(){
+    getHomeLocationB() {
         return this.getBanners();
     }
 
     /**
      * 获取第四个专题图片
      */
-    getHomeLocationD(){
+    getHomeLocationD() {
         const topicOne = 0;
-        return this.getTopicList().find(t=> t.topic_category_id === topicOne);
+        return this.getTopicList().find(t => t.topic_category_id === topicOne);
     }
 
     /**
      * @returns {*} 品牌List
      */
-    getBrandList(){
+    getBrandList() {
         return this.homeData.brandList;
     }
 
@@ -87,7 +91,7 @@ class Theme {
      */
     getHomeLocationF() {
         const topicTwo = 1
-        return this.getTopicList().find(t=> t.topic_category_id  === topicTwo)
+        return this.getTopicList().find(t => t.topic_category_id === topicTwo)
     }
 }
 
