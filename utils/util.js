@@ -42,6 +42,16 @@ const promisic = function (func) {
 };
 
 /**
+ * 按当前机型转换rpx
+ * @param height
+ * @returns {number}
+ */
+const px2rpx = function (height) {
+    const {screenWidth: t} = wx.getSystemInfoSync();
+    return 750 / t * height
+};
+
+/**
  * 排列组合算法
  * @param arr 数组
  * @param size 提取几个
@@ -69,6 +79,6 @@ const combination = function (arr, size) {
 
 export {
     promisic,
-    combination
-// formatTime
+    combination,
+    px2rpx
 }

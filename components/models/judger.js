@@ -26,7 +26,8 @@ class Judger {
 
     //初始化pending
     _initSkuPending() {
-        this.skuPending = new SkuPending()
+        // const specsLength = this.fenceGroup.fences.length
+        this.skuPending = new SkuPending(this.fenceGroup.fences)
         const defaultSku = this.fenceGroup.getDefaultSku() //获取当前默认sku
         if (!defaultSku) {
             return
@@ -55,6 +56,12 @@ class Judger {
         // console.log(this.pathDict)
         // console.log("-------------->加载pathDict end  :----------->")
     }
+
+    // sku 是否全选
+    isSkuIntact() {
+        return this.skuPending.isIntact()
+    }
+
 
     /**
      * 初始化Cell初始状态
@@ -166,6 +173,47 @@ class Judger {
 
     }
 
+
+    /**
+     * 获取一个确定的sku
+     */
+    getDeterminedSku() {
+        const code = this.skuPending.getSkuCode()
+        const sku = this.fenceGroup.getSku(code)
+        return sku
+    }
+
+    //获取所有已选sku by self
+    getAllSelectedSku() {
+        return this.skuPending.getAllSelectedSku()
+    }
+
+    // 获取当前已选规格值
+    getCurrentSpecsValues() {
+        return this.skuPending.getCurrentSpecsValues()
+    }
+
+
+    /**
+     * @returns {[]}
+     */
+    getWaitChooseFences() {
+        const waitChooseFencesTitle = this.fences.filter(f => this.skuPending.getWaitChooseFences().includes(f.id))
+        const temp = []
+        waitChooseFencesTitle.forEach(fence => {
+            temp.push(fence.title)
+        })
+        return temp
+    }
+
+    //获取未选规格名
+    getMissingSpecsKeys() {
+        const index = this.skuPending.getMissingSpecsKeysIndexs()
+        const keys = index.map(i => {
+            return this.fenceGroup.getSpecTitleByIndex(i)
+        })
+        return keys
+    }
 
     /**
      * @description 根据key找cell并修改status

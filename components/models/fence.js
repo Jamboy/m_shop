@@ -24,13 +24,36 @@ class Fence {
     }
 
     /**
+     * 循环cell设置可是图片
+     * @param skuList
+     */
+    setSketchImg(skuList) {
+        this.cells.forEach(cell => {
+            this.setCellSkuImg(cell, skuList)
+        })
+    }
+
+    /**
+     * 通过code匹配cell并设置sku img
+     * @param cell
+     * @param skuList
+     */
+    setCellSkuImg(cell, skuList) {
+        const code = cell.getCellCode()
+        const matchSku = skuList.find(s => s.code.includes(code))
+        if (matchSku) {
+            cell.skuImg = matchSku.img
+        }
+    }
+
+    /**
      * 规格值去重
      * @private
      */
     _initCells() {
         this.specs.forEach(s => {
             //去重
-            const existed = this.cells.some(c=>{
+            const existed = this.cells.some(c => {
                 return c.id === s.value_id
             })
             if (existed) {

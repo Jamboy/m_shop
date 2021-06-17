@@ -16,6 +16,14 @@ const CellStatus = {
     WAiTING: 'waiting'
 }
 
+const SpuListType = {
+    THEME: 'theme',
+    ROOT_CATALOG: 'root_catalog',
+    SUB_CATALOG: 'sub-catalog',
+    LATEST: 'latest'
+}
+
 export {
-    CellStatus
+    CellStatus,
+    SpuListType
 }

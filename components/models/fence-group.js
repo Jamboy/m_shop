@@ -44,17 +44,22 @@ class FenceGroup {
         const matrix = this._createMatrix(this.skuList) //创建规格数据矩阵
         const fences = []
         const newMatrix = matrix.transpose()  //转秩
-        console.log("-------------->开始处理专职后的矩阵 begin:----------->")
+        // console.log("-------------->开始处理专职后的矩阵 begin:----------->")
         newMatrix.forEach(r => {
             // const fence = new Fence(r)
             const fence = this._createFence(r)
             fence.init()
+
+            if (this._hasSketchFence() && this._isSketchFence(fence.id)) {
+                fence.setSketchImg(this.skuList)
+            }
             fences.push(fence)
         })
         this.fences = fences
-        console.log("-------------->结束处理专职后的矩阵 end  :----------->")
+        console.log("-------------->处理转秩后的矩阵 end  :----------->")
         console.log(fences)
     }
+
 
     /**
      * 循环取出cell
@@ -75,10 +80,22 @@ class FenceGroup {
      */
     getDefaultSku() {
         const defaultSkuId = this.spu.default_sku_id;
+        // const defaultSkuId = 3;
         if (!defaultSkuId) {
             return
         }
         return this.skuList.find(s => s.id === defaultSkuId)
+    }
+
+    /**
+     * 根据skucode获取对应sku
+     * @param skuCode
+     * @returns {T|null}
+     */
+    getSku(skuCode) {
+        const fullSkuCode = this.spu.id + '$' + skuCode
+        const sku = this.skuList.find(s => s.code === fullSkuCode)
+        return sku ? sku : null
     }
 
     /**
@@ -103,6 +120,33 @@ class FenceGroup {
     setCellStatusByXY(x, y, status) {
         this.fences[x].cells[y].status = status
     }
+
+    /**
+     * 根据index获取规格名
+     * @param index
+     * @returns {*}
+     */
+    getSpecTitleByIndex(index) {
+        return this.fences[index].title
+    }
+
+    /**
+     * 是否含有可视规格
+     * @returns {boolean}
+     * @private
+     */
+    _hasSketchFence() {
+        return this.spu.sketch_spec_id ? true : false
+    }
+
+    /**
+     * 该fence是否为可视fence
+     * @param fenceId
+     */
+    _isSketchFence(fenceId) {
+        return this.spu.sketch_spec_id === fenceId ? true : false
+    }
+
 
     /**
      * 创建fence

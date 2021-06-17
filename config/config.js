@@ -4,11 +4,11 @@
  * @Date: 2021-02-22 09:47:12
  * @LastEditTime: 2021-02-25 14:14:36
  */
-const ApiBaseUrl = 'http://106.53.83.193:9888/' //云端测试api
-const ApiRootUrl = 'http://127.0.0.1:8360/api/' //本地商城测试api
+const ApiBaseUrl = 'http://106.53.83.193:9888/' //云端DRP测试api
+const ApiRootUrl = 'http://81.71.123.32:8360/api/' //云端商城测试api
+// const ApiRootUrl = 'http://127.0.0.1:8360/api/' //云端商城测试api
 // const ApiMockUrl = 'https://1f97354c-56e2-4403-a9e8-362717d86909.mock.pstmn.io/' //postman mock api
-const ApiMockUrl = 'https://777ad177-c952-4254-92d3-9b4a0a52a096.mock.pstmn.io/' //postman mock api
-
+const ApiMockUrl = 'https://www.fastmock.site/mock/2d5df602052fc8893187ea019434e037/api/' //postman mock api
 const config = {
     ApiBaseUrl: ApiBaseUrl,
     LocalShopUrl: ApiRootUrl,
@@ -77,7 +77,8 @@ const config = {
     /**
      * mock api
      */
-    MockGoodsDetail: ApiMockUrl + 'mock/goods/detail' //mock lin response 测试矩阵
+    MockGoodsDetail: ApiMockUrl + 'goods/1/detail', //mock 无规格
+    MockGoodsNoSkuDetail: ApiMockUrl + 'goods/2/detail' //mock 无规格
 
 }
 

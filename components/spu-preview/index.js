@@ -1,6 +1,4 @@
 // components/spu-preview/index.js
-import number from "../../miniprogram_npm/lin-ui/common/async-validator/validator/number";
-import {SpuDetail} from "../../models/spu-detail";
 
 /**
  * 单个商品预览组件
@@ -43,7 +41,7 @@ Component({
             const pid = e.currentTarget.dataset.pid
             console.log(pid)
             wx.navigateTo({
-                url: `/pages/detail/detail?pid=${1181000}`
+                url: `/pages/detail/detail?pid=${pid}`
             })
         }
     }

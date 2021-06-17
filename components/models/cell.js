@@ -12,6 +12,7 @@ class Cell {
     id
     status = CellStatus.WAiTING
     spec
+    skuImg
 
     constructor(spec) {
         this.title = spec.value

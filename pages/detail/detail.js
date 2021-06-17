@@ -4,8 +4,8 @@
  * @date: 2021-03-01 15:40
  * @description：detail.js 展示商品详情
  */
-import {SpuPaging} from "../../models/spu-paging";
 import {SpuDetail} from "../../models/spu-detail";
+import {getSystemAdaptHeightRpx} from "../../utils/system";
 
 // pages/detail/detail.js
 Page({
@@ -17,22 +17,24 @@ Page({
         gallery: Array,
         desc: Object,
         spuSpecDataList: Object,
-        spu: Object
+        spu: Object,
+        spec: Object,
+        scrollViewHeight: Number
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: async function (options) {
+        const h = await getSystemAdaptHeightRpx(100)
         const pid = options.pid
+        this.initGoodsDetail(pid)
         console.log("-------------->商品详情页面加载 begin:----------->")
-        console.log(pid)
-        const spu = await this.getMockDetail(3)
+        const spu = await this.getMockDetail(1) //无规格
+        // const spu = await this.getMockDetail(2)//含规格
         this.setData({
             spu,
-            desc: {
-
-            }
+            scrollViewHeight: h
         })
         console.log("-------------->商品详情页面加载 end  :----------->")
     },
@@ -43,13 +45,16 @@ Page({
      */
     async initGoodsDetail(id) {
         const res = await SpuDetail.getSpuDetail(id)
+        const issue = SpuDetail.getIssue()
+        console.log(issue)
         const gallery = res.gallery
         this.setData({
             gallery,
+            issue,
             desc: {
-                name: res.info.name,
-                goods_brief: res.info.goods_brief,
-                retail_price: res.info.retail_price
+                title: res.info.name,
+                subtitle: res.info.goods_brief,
+                price: res.info.retail_price,
             },
             spuSpecDataList: {
                 specificationList: res.specificationList,
@@ -66,8 +71,8 @@ Page({
     /**
      * 获取mock detail
      */
-    async getMockDetail(id) {
-        const res = await SpuDetail.getMockSpu(id)
+    async getMockDetail(pid) {
+        const res = await SpuDetail.getMockSpu(pid)
         console.log("-------------->开始加载Mock begin:----------->")
         console.log(res)
         console.log("-------------->结束加载Mock end  :----------->")
@@ -75,51 +80,62 @@ Page({
     },
 
     /**
-     * 生命周期函数--监听页面初次渲染完成
+     *回到首页
      */
-    onReady: function () {
-
+    onGoToHome(e) {
+        wx.switchTab({
+                url: "/pages/home/home"
+            }
+        )
     },
 
     /**
-     * 生命周期函数--监听页面显示
+     *回到购物车
      */
-    onShow: function () {
-
+    onGoToCart(e) {
+        wx.switchTab({
+            url: "/pages/cart/cart"
+        })
     },
 
     /**
-     * 生命周期函数--监听页面隐藏
+     *添加到购物车
      */
-    onHide: function () {
-
+    onAddToCart(e) {
+        this.setData({
+            showRealm: true,
+            orderWay: "cart"
+        })
     },
 
-    /**
-     * 生命周期函数--监听页面卸载
-     */
-    onUnload: function () {
 
+    /**
+     *直接购买
+     */
+    onBuy(e) {
+        this.setData({
+            showRealm: true,
+            orderWay: "buy"
+        })
     },
 
-    /**
-     * 页面相关事件处理函数--监听用户下拉动作
-     */
-    onPullDownRefresh: function () {
-
+    onSpecChange(e) {
+        const spec = e.detail
+        this.setData({
+            spec
+        })
     },
 
-    /**
-     * 页面上拉触底事件的处理函数
-     */
-    onReachBottom: function () {
-
-    },
-
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage: function () {
+    onShopping(e) {
+        console.log("-------------->开始加载onShopping begin:----------->")
+        console.log(e.detail)
+        console.log("-------------->结束加载onShopping end  :----------->")
+        const data = e.detail
+        if (data.orderWay === 'cart') {
+            console.log("去购物车")
+        } else {
+            console.log("直接购买")
+        }
 
     }
 })

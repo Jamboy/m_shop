@@ -37,9 +37,9 @@ class SkuCode {
             })
             this.totalSegments = this.totalSegments.concat(joinSegments)
         }
-        console.log("-------------->totalSegments begin:----------->")
-        console.log(this.totalSegments)
-        console.log("-------------->totalSegments end  :----------->")
+        // console.log("-------------->totalSegments begin:----------->")
+        // console.log(this.totalSegments)
+        // console.log("-------------->totalSegments end  :----------->")
     }
 
 }

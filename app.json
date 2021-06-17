@@ -5,7 +5,11 @@
     "pages/index/index",
     "pages/my/my",
     "pages/home/home",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/cart/cart",
+    "pages/category/category",
+    "pages/search/search",
+    "pages/spu-list/spu-list"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,6 +25,18 @@
         "text": "主页",
         "iconPath": "images/tabbar/home@dis.png",
         "selectedIconPath": "images/tabbar/home.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "images/tabbar/category@dis.png",
+        "selectedIconPath": "images/tabbar/category.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "images/tabbar/cart@dis.png",
+        "selectedIconPath": "images/tabbar/cart.png"
       },
       {
         "pagePath": "pages/my/my",
@@ -43,7 +59,21 @@
     "l-water-flow": "/miniprogram_npm/lin-ui/water-flow/index",
     "l-load-more": "/miniprogram_npm/lin-ui/loadmore/index",
     "udf-spu-preview": "/components/spu-preview/index",
-    "l-counter": "/miniprogram_npm/lin-ui/counter/index"
+    "l-counter": "/miniprogram_npm/lin-ui/counter/index",
+    "u-counter": "/components/counter/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "u-tab-bar": "/components/tab-bar/index",
+    "l-badge": "/miniprogram_npm/lin-ui/badge/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "u-sale-explain": "/components/sale-explain/index",
+    "l-segment": "/miniprogram_npm/lin-ui/segment",
+    "l-segment-item": "/miniprogram_npm/lin-ui/segment-item",
+    "udf-category-grid": "/components/category-grid/index",
+    "l-search-bar": "/miniprogram_npm/lin-ui/search-bar/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "l-loading": "/miniprogram_npm/lin-ui/loading/index",
+    "u-spu-preview-rule": "/components/spu-preview-rule/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

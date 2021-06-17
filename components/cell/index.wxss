@@ -34,3 +34,9 @@
 .selected {
 
 }
+
+.img {
+    padding-right: 10rpx;
+    width: 30rpx;
+    height: 30rpx;
+}

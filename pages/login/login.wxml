@@ -1,5 +1,5 @@
-<view>
-    <view class="container">
+<view class="container">
+    <view class="inner-container">
         <form bindsubmit="startLogin">
             <view class="input-group">
                 <text class="input-label">账号</text>
