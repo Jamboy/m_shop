@@ -238,7 +238,6 @@ Component({
         //抛出不含规格的shopping事件
         _shoppingNoSpec() {
             this._triggerShoppingEvent(this._getNoSpecSku())
-
         },
 
         //获取无规格的sku
@@ -246,6 +245,11 @@ Component({
             return this.properties.spu.sku_list[0]
         },
 
+        /**
+         * @description: 抛出购买事件
+         * @param {*} sku
+         * @return {*}
+         */        
         _triggerShoppingEvent(sku) {
             this.triggerEvent('shopping', {
                 orderWay: this.properties.orderWay,
