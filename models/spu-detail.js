@@ -1,3 +1,9 @@
+/*
+ * @Description: 
+ * @Author: Jamboy
+ * @Date: 2021-06-05 11:43:59
+ * @LastEditTime: 2021-06-17 15:08:56
+ */
 /**
  * @name: spu-detail
  * @author: Kivia
