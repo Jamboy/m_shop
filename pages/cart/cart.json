@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "u-cart-item": "/components/cart-item/index"
+  }
 }
