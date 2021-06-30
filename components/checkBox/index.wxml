@@ -7,7 +7,7 @@
 	 wx:if="{{checked}}"
 	 name="check"
 	 size="28"
-	 l-class="sleeve"
+	 l-class="jambo"
 	/>
 </view>
 
