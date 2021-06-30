@@ -2,7 +2,7 @@
  * @Description:
  * @Author: Jamboy
  * @Date: 2021-02-01 11:58:53
- * @LastEditTime: 2021-06-29 10:41:34
+ * @LastEditTime: 2021-06-29 14:09:50
  */
 import { Token } from './models/token'
 import { Cart } from './models/cart'
@@ -16,7 +16,7 @@ App({
     // 购物车红点
     const cart = new Cart()
     if (!cart.isEmpty()) {
-      wx.wx.showTabBarRedDot({
+      wx.showTabBarRedDot({
         index: 2,
       })
     }

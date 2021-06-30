@@ -42,3 +42,7 @@ page {
 .l-icon-clear:before {
     content: "\e680";
 }
+
+.l-icon-check:before {
+    content: "\e67a";
+}
