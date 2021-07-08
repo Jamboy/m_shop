@@ -23,7 +23,7 @@
     "compileHotReLoad": true,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": true,
+    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -37,8 +37,8 @@
     "showES6CompileOption": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.17.3",
-  "appid": "wx086b05101d323640",
+  "libVersion": "2.18.0",
+  "appid": "wx3d98668ba3fd1585",
   "projectname": "SleeveDemo",
   "debugOptions": {
     "hidedInDevtools": []
